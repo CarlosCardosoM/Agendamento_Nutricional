@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
-    List<Consulta> findByClienteMatricula(String matricula);
+    List<Consulta> findByClienteMatricula(Long matricula);
     List<Consulta> findByFuncionarioId(Long funcionarioId);
 }
