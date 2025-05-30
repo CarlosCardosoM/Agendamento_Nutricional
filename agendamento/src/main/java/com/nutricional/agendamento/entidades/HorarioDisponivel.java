@@ -3,10 +3,8 @@ package com.nutricional.agendamento.entidades;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import jakarta.persistence.Entity;
 
 @Entity
-
 public class HorarioDisponivel {
 
     @Id
@@ -14,13 +12,12 @@ public class HorarioDisponivel {
     private Long id;
 
     private LocalDate data;
-    private LocalTime hora;
+    private LocalTime horaInicio;
+    private LocalTime horaFim;
 
     @ManyToOne
-    @JoinColumn(name = "funcionario_id") // Referencia o ID do Funcionario
+    @JoinColumn(name = "funcionario_id", nullable = false)
     private Funcionario funcionario;
-
-    private boolean ocupado = false;
 
 
     // Getters e Setters
@@ -41,12 +38,20 @@ public class HorarioDisponivel {
         this.data = data;
     }
 
-    public LocalTime getHora() {
-        return hora;
+    public LocalTime getHoraInicio() {
+        return horaInicio;
     }
 
-    public void setHora(LocalTime hora) {
-        this.hora = hora;
+    public void setHoraInicio(LocalTime horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public LocalTime getHoraFim() {
+        return horaFim;
+    }
+
+    public void setHoraFim(LocalTime horaFim) {
+        this.horaFim = horaFim;
     }
 
     public Funcionario getFuncionario() {
@@ -56,14 +61,4 @@ public class HorarioDisponivel {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
-
-    public boolean isOcupado() {
-        return ocupado;
-    }
-
-    public void setOcupado(boolean ocupado) {
-        this.ocupado = ocupado;
-    }
 }
-
-
