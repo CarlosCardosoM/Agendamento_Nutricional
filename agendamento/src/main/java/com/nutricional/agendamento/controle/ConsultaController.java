@@ -15,6 +15,7 @@ public class ConsultaController {
     @Autowired
     private ConsultaService consultaService;
 
+<<<<<<< HEAD
     @PostMapping("/agendar")
     public ResponseEntity<Consulta> agendarConsulta(
             @RequestParam Long clienteMatricula,
@@ -36,5 +37,31 @@ public class ConsultaController {
     public ResponseEntity<Void> cancelarConsulta(@PathVariable Long consultaId) {
         consultaService.cancelarConsulta(consultaId);
         return ResponseEntity.noContent().build();
+=======
+    @PostMapping
+    public ResponseEntity<Consulta> agendar(@RequestBody Consulta consulta) {
+        return ResponseEntity.ok(consultaService.agendarConsulta(consulta));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Consulta>> listar() {
+        return ResponseEntity.ok(consultaService.listarConsultas());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Consulta> buscar(@PathVariable Long id) {
+        return ResponseEntity.ok(consultaService.buscarConsulta(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Consulta> editar(@PathVariable Long id, @RequestBody Consulta consultaAtualizada) {
+        return ResponseEntity.ok(consultaService.editarConsulta(id, consultaAtualizada));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> cancelar(@PathVariable Long id) {
+        consultaService.cancelarConsulta(id);
+        return ResponseEntity.ok().build();
+>>>>>>> 3e8cdc1a991f4f6485be0b95f0ba5c419ee3e65f
     }
 }

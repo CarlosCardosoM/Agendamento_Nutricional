@@ -35,4 +35,10 @@ public class FuncionarioService {
         return funcionarioRepository.save(funcionario);
     }
 
+    public Funcionario autenticar(String email, String senha) {
+        return funcionarioRepository.findByEmailAndSenha(email, senha)
+                .orElseThrow(() -> new RuntimeException("Email ou senha inválidos"));
+    }
+
+
 }
