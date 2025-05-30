@@ -15,32 +15,14 @@ public class ConsultaController {
     @Autowired
     private ConsultaService consultaService;
 
-<<<<<<< HEAD
     @PostMapping("/agendar")
     public ResponseEntity<Consulta> agendarConsulta(
             @RequestParam Long clienteMatricula,
             @RequestParam Long funcionarioId,
             @RequestParam Long horarioId,
             @RequestParam(required = false) String observacoes) {
-
         Consulta consulta = consultaService.agendarConsulta(clienteMatricula, funcionarioId, horarioId, observacoes);
         return ResponseEntity.ok(consulta);
-    }
-
-    @GetMapping("/cliente/{clienteMatricula}")
-    public ResponseEntity<List<Consulta>> listarConsultasPorCliente(@PathVariable Long clienteMatricula) {
-        List<Consulta> consultas = consultaService.listarConsultasPorCliente(clienteMatricula);
-        return ResponseEntity.ok(consultas);
-    }
-
-    @DeleteMapping("/{consultaId}")
-    public ResponseEntity<Void> cancelarConsulta(@PathVariable Long consultaId) {
-        consultaService.cancelarConsulta(consultaId);
-        return ResponseEntity.noContent().build();
-=======
-    @PostMapping
-    public ResponseEntity<Consulta> agendar(@RequestBody Consulta consulta) {
-        return ResponseEntity.ok(consultaService.agendarConsulta(consulta));
     }
 
     @GetMapping
@@ -61,7 +43,12 @@ public class ConsultaController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> cancelar(@PathVariable Long id) {
         consultaService.cancelarConsulta(id);
-        return ResponseEntity.ok().build();
->>>>>>> 3e8cdc1a991f4f6485be0b95f0ba5c419ee3e65f
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/cliente/{clienteMatricula}")
+    public ResponseEntity<List<Consulta>> listarConsultasPorCliente(@PathVariable Long clienteMatricula) {
+        List<Consulta> consultas = consultaService.listarConsultasPorCliente(clienteMatricula);
+        return ResponseEntity.ok(consultas);
     }
 }
